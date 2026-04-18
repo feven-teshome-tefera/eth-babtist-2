@@ -18,7 +18,7 @@ export function Hero() {
           style={{ backgroundImage: 'url("/ourchurch1.jpg")' }}
         />
         <div
-          className="absolute inset-0 scale-105 bg-cover bg-center bg-no-repeat blur-md"
+          className="absolute inset-0 scale-105 bg-cover bg-center bg-no-repeat blur-[2px]"
           style={{ backgroundImage: 'url("/ourchurch1.jpg")' }}
         />
         <div className="absolute inset-0 bg-navy/35" />
