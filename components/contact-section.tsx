@@ -13,7 +13,9 @@ export function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
   const copy = useSiteCopy()
+  const mapLocationUrl = 'https://maps.app.goo.gl/WzL374A5bTUzQv5Y8'
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -35,10 +37,39 @@ export function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setSubmitError(null)
     setIsSubmitting(true)
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+    const payload = {
+      firstName: String(formData.get('firstName') ?? ''),
+      lastName: String(formData.get('lastName') ?? ''),
+      email: String(formData.get('email') ?? ''),
+      subject: String(formData.get('subject') ?? ''),
+      message: String(formData.get('message') ?? ''),
+    }
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+
+      if (!response.ok) {
+        throw new Error('Request failed')
+      }
+
+      form.reset()
+      setIsSubmitted(true)
+    } catch {
+      setSubmitError('Unable to send your message right now. Please try again shortly.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -116,7 +147,6 @@ export function ContactSection() {
                     <a href="mailto:ebceethiopia@gmail.com" className="text-white/70 transition-colors hover:text-gold">
                       ebceethiopia@gmail.com
                     </a>
-                    <p className="mt-1 text-xs text-white/50">{copy.contact.emailFuture}</p>
                   </div>
                 </div>
               </CardContent>
@@ -157,13 +187,18 @@ export function ContactSection() {
               </CardContent>
             </Card>
 
-            <Card className="overflow-hidden border-0 bg-white/5 backdrop-blur-sm">
-              <div className="flex aspect-video items-center justify-center bg-navy-light">
-                <div className="p-8 text-center">
-                  <MapPin className="mx-auto mb-3 h-12 w-12 text-white/20" />
-                  <p className="text-sm text-white/50">{copy.contact.mapPlaceholder}</p>
+            <Card className="overflow-hidden border-0 bg-white/5 backdrop-blur-sm transition-colors hover:bg-white/10">
+              <a
+                href={mapLocationUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex aspect-video items-center justify-center bg-navy-light p-8 text-center"
+              >
+                <div>
+                  <MapPin className="mx-auto mb-3 h-12 w-12 text-gold" />
+                  <p className="text-sm font-medium text-white">{copy.contact.mapPlaceholder}</p>
                 </div>
-              </div>
+              </a>
             </Card>
           </div>
 
@@ -172,6 +207,7 @@ export function ContactSection() {
               <CardContent className="p-8">
                 <h3 className="mb-3 text-xl font-bold text-navy">{copy.contact.formTitle}</h3>
                 <p className="mb-6 text-sm text-muted-foreground">{copy.contact.formIntro}</p>
+                {submitError ? <p className="mb-4 text-sm text-red-600">{submitError}</p> : null}
 
                 {isSubmitted ? (
                   <div className="py-12 text-center">
@@ -190,25 +226,51 @@ export function ContactSection() {
                       <div className="grid gap-4 sm:grid-cols-2">
                         <Field>
                           <FieldLabel htmlFor="firstName">{copy.contact.firstName}</FieldLabel>
-                          <Input id="firstName" placeholder={copy.contact.firstNamePlaceholder} required className="mt-1" />
+                          <Input
+                            id="firstName"
+                            name="firstName"
+                            placeholder={copy.contact.firstNamePlaceholder}
+                            required
+                            className="mt-1"
+                          />
                         </Field>
                         <Field>
                           <FieldLabel htmlFor="lastName">{copy.contact.lastName}</FieldLabel>
-                          <Input id="lastName" placeholder={copy.contact.lastNamePlaceholder} required className="mt-1" />
+                          <Input
+                            id="lastName"
+                            name="lastName"
+                            placeholder={copy.contact.lastNamePlaceholder}
+                            required
+                            className="mt-1"
+                          />
                         </Field>
                       </div>
                       <Field>
                         <FieldLabel htmlFor="email">{copy.contact.emailAddress}</FieldLabel>
-                        <Input id="email" type="email" placeholder={copy.contact.emailPlaceholder} required className="mt-1" />
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          placeholder={copy.contact.emailPlaceholder}
+                          required
+                          className="mt-1"
+                        />
                       </Field>
                       <Field>
                         <FieldLabel htmlFor="subject">{copy.contact.subject}</FieldLabel>
-                        <Input id="subject" placeholder={copy.contact.subjectPlaceholder} required className="mt-1" />
+                        <Input
+                          id="subject"
+                          name="subject"
+                          placeholder={copy.contact.subjectPlaceholder}
+                          required
+                          className="mt-1"
+                        />
                       </Field>
                       <Field>
                         <FieldLabel htmlFor="message">{copy.contact.message}</FieldLabel>
                         <Textarea
                           id="message"
+                          name="message"
                           placeholder={copy.contact.messagePlaceholder}
                           rows={5}
                           required

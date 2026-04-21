@@ -1,15 +1,12 @@
-'use client'
-
 import Link from 'next/link'
 import { Mail, Phone, MapPin, MessageCircle, Building2 } from 'lucide-react'
-import { useSiteCopy } from '@/components/language-provider'
+import type { SiteCopy } from '@/lib/site-copy'
 
 const socialLinks = [
   { href: 'https://t.me/+LDH9i5_5DitiZDA8', icon: MessageCircle, label: 'Telegram' },
 ]
 
-export function Footer() {
-  const copy = useSiteCopy()
+export function Footer({ copy }: { copy: SiteCopy }) {
   const quickLinks = copy.nav.links
 
   return (

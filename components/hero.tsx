@@ -1,12 +1,8 @@
-'use client'
-
 import Link from 'next/link'
 import { ChevronDown, Users, BookOpen, Church } from 'lucide-react'
-import { useSiteCopy } from '@/components/language-provider'
+import type { SiteCopy } from '@/lib/site-copy'
 
-export function Hero() {
-  const copy = useSiteCopy()
-
+export function Hero({ copy }: { copy: SiteCopy }) {
   return (
     <section
       id="home"

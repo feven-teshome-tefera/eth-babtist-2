@@ -2,12 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion'
 import { Button } from '@/components/ui/button'
 import { BookOpen, ChevronDown, ChevronUp } from 'lucide-react'
 import { useSiteCopy } from '@/components/language-provider'
@@ -16,6 +10,7 @@ export function FaithSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [showExtended, setShowExtended] = useState(false)
   const copy = useSiteCopy()
+  const visibleArticles = showExtended ? copy.faith.articles : copy.faith.articles.slice(0, 4)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -34,6 +29,10 @@ export function FaithSection() {
 
     return () => observer.disconnect()
   }, [])
+
+  const handleToggleExtended = () => {
+    setShowExtended((current) => !current)
+  }
 
   return (
     <section id="faith" ref={sectionRef} className="bg-cream py-24">
@@ -62,36 +61,26 @@ export function FaithSection() {
               </div>
             </div>
 
-            <Accordion type="single" collapsible className="w-full">
-              {copy.faith.articles.map((article, index) => (
-                <AccordionItem key={article.title} value={`item-${index}`}>
-                  <AccordionTrigger className="py-4 text-left hover:no-underline">
-                    <div className="flex items-start gap-4">
-                      <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-navy text-sm font-semibold text-white">
-                        {index + 1}
-                      </span>
-                      <div className="text-left">
-                        <h4 className="font-semibold text-navy">{article.title}</h4>
-                        <p className="mt-1 text-sm text-muted-foreground">{article.summary}</p>
-                      </div>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="pl-12">
-                    <p className="pb-2 leading-relaxed text-foreground/80">
-                      {showExtended ? article.extended : article.summary}
-                    </p>
-                    {showExtended && (
-                      <p className="mt-2 text-sm italic text-muted-foreground">
-                        {copy.faith.extendedHint}
+            <div className="space-y-1">
+              {visibleArticles.map((article, index) => (
+                <div key={article.title} className="border-b border-border py-4 last:border-b-0">
+                  <div className="flex items-start gap-4">
+                    <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-navy text-sm font-semibold text-white">
+                      {index + 1}
+                    </span>
+                    <div className="min-w-0 text-left">
+                      <h4 className="font-semibold text-navy">{article.title}</h4>
+                      <p className="mt-2 leading-relaxed text-foreground/80">
+                        {showExtended ? article.extended : article.summary}
                       </p>
-                    )}
-                  </AccordionContent>
-                </AccordionItem>
+                    </div>
+                  </div>
+                </div>
               ))}
-            </Accordion>
+            </div>
 
             <div className="mt-8 flex items-center justify-center border-t border-border pt-6">
-              <Button variant="outline" onClick={() => setShowExtended(!showExtended)} className="gap-2">
+              <Button variant="outline" onClick={handleToggleExtended} className="gap-2">
                 {showExtended ? (
                   <>
                     <ChevronUp className="h-4 w-4" />

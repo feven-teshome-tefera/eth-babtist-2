@@ -9,9 +9,13 @@ next.user-config.*
 .codex
 
 # Environment variables
+.env
+.env.*
 .env*.local
+!.env.example
 
 # Common ignores
 node_modules
 .next/
+tsconfig.tsbuildinfo
 .DS_Store

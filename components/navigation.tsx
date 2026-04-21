@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { Menu } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
@@ -14,9 +15,11 @@ import {
 } from '@/components/ui/sheet'
 import { useLanguage, useSiteCopy } from '@/components/language-provider'
 import { languageOptions } from '@/lib/site-copy'
+import { SITE_LANGUAGE_COOKIE } from '@/lib/site-language-constants'
 import { cn } from '@/lib/utils'
 
 export function Navigation() {
+  const router = useRouter()
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
   const [isOpen, setIsOpen] = useState(false)
@@ -47,6 +50,14 @@ export function Navigation() {
 
   const handleLinkClick = () => {
     setIsOpen(false)
+  }
+
+  const handleLanguageChange = (nextLanguage: (typeof languageOptions)[number]['value']) => {
+    window.localStorage.setItem(SITE_LANGUAGE_COOKIE, nextLanguage)
+    document.cookie = `${SITE_LANGUAGE_COOKIE}=${nextLanguage}; path=/; max-age=31536000; samesite=lax`
+    document.documentElement.lang = nextLanguage
+    setLanguage(nextLanguage)
+    router.refresh()
   }
 
   return (
@@ -127,7 +138,7 @@ export function Navigation() {
                 <button
                   key={option.value}
                   type="button"
-                  onClick={() => setLanguage(option.value)}
+                  onClick={() => handleLanguageChange(option.value)}
                   className={cn(
                     'rounded-full px-3 py-1 text-xs font-semibold transition-colors',
                     language === option.value
@@ -192,7 +203,7 @@ export function Navigation() {
                         className={cn(
                           language === option.value && 'bg-navy text-white hover:bg-navy/90'
                         )}
-                        onClick={() => setLanguage(option.value)}
+                        onClick={() => handleLanguageChange(option.value)}
                       >
                         {option.label}
                       </Button>

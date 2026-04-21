@@ -50,8 +50,7 @@ export function ValuesSection() {
             return (
               <Card
                 key={value.title}
-                className="group border border-border/50 transition-all hover:border-gold/50 hover:shadow-lg animate-on-scroll"
-                style={{ transitionDelay: `${index * 75}ms` }}
+                className="group border border-border/50 transition-all hover:border-gold/50 hover:shadow-lg"
               >
                 <CardContent className="p-6">
                   <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-navy/5 transition-colors group-hover:bg-gold/10">

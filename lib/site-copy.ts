@@ -187,7 +187,6 @@ export const siteCopy = {
         'This section presents a concise doctrinal summary prepared for website use.',
       articlesTitle: 'Articles of Faith',
       articlesSubtitle: 'Essential beliefs of Emmanuel Baptist Church of Ethiopia',
-      extendedHint: 'Website summary expanded from the requirements document',
       showSummary: 'Show Summary Version',
       showExtended: 'Show Extended Doctrinal Statement',
       articles: [
@@ -296,7 +295,7 @@ export const siteCopy = {
         "Registered through the Ethiopian Council of Gospel Believers' Churches under Registration Certificate No. 0824.",
       telegram: 'Telegram Community',
       joinTelegram: 'Join our Telegram group',
-      mapPlaceholder: '[Map Placeholder: Addis Ababa, Ethiopia]',
+      mapPlaceholder: 'Open church location in Google Maps',
       formTitle: 'Send us a Message',
       formIntro:
         'Use this form for ministry inquiries, partnerships, or questions about EBCE churches and leadership.',
@@ -376,9 +375,9 @@ export const siteCopy = {
         'የአማኑኤል ባፕቲስት ቤተ ክርስቲያን ታሪክ በወንጌል ምስክርነት፣ በመጽሐፍ ቅዱሳዊ እምነት፣ በመከራ መቋቋም እና በሀገር አቀፍ የቤተ ክርስቲያን መባዛት ታውቋል።',
       legacyTitle: 'የታማኝነት ቅርስ',
       paragraph1:
-        'አማኑኤል ባፕቲስት ቤተ ክርስቲያን በ1960 በአዲስ አበባ ከአሜሪካ የመጡ የBaptist Bible Fellowship ሚስዮናውያን ተከልታ ተጀመረች። በ1962 በአራት ኪሎ በንጉሠ ነገሥት ኃይለ ሥላሴ በተሰጠ መሬት ላይ አራት ፎቅ ሕንፃ ተሠርቶ ጉባኤው በ1963 ወደዚያ ተዛወረ።',
+        'አማኑኤል ባፕቲስት ቤተ ክርስቲያን በ1960 በአዲስ አበባ ከአሜሪካ የመጡ የBaptist Bible Fellowship ሚስዮናውያን ተተክላ ተጀመረች። በ1962 በአራት ኪሎ በንጉሠ ነገሥት ኃይለ ሥላሴ በተሰጠ መሬት ላይ አራት ፎቅ ሕንፃ ተሠርቶ ጉባኤው በ1963 ወደዚያ ተዘዋወረ።',
       paragraph2:
-        'ከዚያ በኋላ አገልግሎቱ ብዙ የኢትዮጵያ አገልጋዮችን ያሰለጠነውን የBaptist Bible Institute አካቶ ቀጠለ። ሕንፃው በ1981 ቢወሰድም እና ቤተ ክርስቲያኒቱ በተበተኑ ምስጢራዊ ስብሰባዎች ብትቀጥልም ሥራው አልቆምም። ዛሬ ኢቢሲኢ በ143 የአካባቢ አብያተ ክርስቲያናት ይገለግላል፣ ወንጌልን ይሰብካል፣ አማኞችን ያስተምራል እና አብያተ ክርስቲያናትን ያጠናክራል።',
+        'ከዚያ በኋላ አገልግሎቱ ብዙ የኢትዮጵያ አገልጋዮችን ያሰለጠነውን የBaptist Bible Institute አካቶ ቀጠለ። ሕንፃው በ1981 ቢወሰድም ቤተ ክርስቲያኒቱ በተበተኑ ምስጢራዊ ስብሰባዎች ብትቀጥልም ሥራው አልቆምም። ዛሬ በ143 የአካባቢ አብያተ ክርስቲያናት ያገለግላል፣ ወንጌልን ይሰብካል፣ አማኞችን ያስተምራል እና አብያተ ክርስቲያናትን ያጠናክራል።',
       imageAlt: 'የታሪካዊ አገልግሎት ፎቶ',
       historyTitle: 'ታሪካችን',
       historySubtitle: 'በኢቢሲኢ ሕይወት ውስጥ ዋና ክስተቶች',
@@ -499,7 +498,6 @@ export const siteCopy = {
       intro: 'ይህ ክፍል ለድረ ገጹ የተዘጋጀ አጭር የትምህርት ማጠቃለያ ያቀርባል።',
       articlesTitle: 'የእምነት አንቀጾች',
       articlesSubtitle: 'የአማኑኤል ባፕቲስት ቤተ ክርስቲያን መሠረታዊ እምነቶች',
-      extendedHint: 'የድረ ገጹ ማጠቃለያ ከመስፈርት ሰነዱ ተጨምሮ ተዘጋጅቷል',
       showSummary: 'አጭር ማጠቃለያ አሳይ',
       showExtended: 'የተራዘመ የእምነት መግለጫ አሳይ',
       articles: [
@@ -590,7 +588,7 @@ export const siteCopy = {
       legalStatusBody: 'በወንጌላውያን አማኞች ቤተ ክርስቲያናት ምክር ቤት አማካኝነት በምዝገባ ቁጥር 0824 ተመዝግቧል።',
       telegram: 'የቴሌግራም ማህበረሰብ',
       joinTelegram: 'የቴሌግራም ቡድናችንን ይቀላቀሉ',
-      mapPlaceholder: '[የካርታ ቦታ: አዲስ አበባ፣ ኢትዮጵያ]',
+      mapPlaceholder: 'የቤተ ክርስቲያን አድራሻን በGoogle Maps ክፈት',
       formTitle: 'መልእክት ላኩልን',
       formIntro: 'ለአገልግሎት ጥያቄዎች፣ ለአጋርነት ወይም ስለ ቤተ ክርስቲያናትና መሪዎች ጥያቄ ይህን ቅጽ ይጠቀሙ።',
       successTitle: 'መልእክትዎ ተልኳል!',
@@ -629,3 +627,5 @@ export const siteCopy = {
     },
   },
 } as const
+
+export type SiteCopy = (typeof siteCopy)[Language]

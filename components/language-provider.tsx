@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { Language, siteCopy } from '@/lib/site-copy'
+import { SITE_LANGUAGE_COOKIE } from '@/lib/site-language-constants'
 
 type LanguageContextValue = {
   language: Language
@@ -10,18 +11,22 @@ type LanguageContextValue = {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null)
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>('en')
+export function LanguageProvider({
+  children,
+  initialLanguage,
+}: {
+  children: React.ReactNode
+  initialLanguage: Language
+}) {
+  const [language, setLanguage] = useState<Language>(initialLanguage)
 
   useEffect(() => {
-    const storedLanguage = window.localStorage.getItem('site-language') as Language | null
-    if (storedLanguage === 'en' || storedLanguage === 'am') {
-      setLanguage(storedLanguage)
-    }
-  }, [])
+    setLanguage(initialLanguage)
+  }, [initialLanguage])
 
   useEffect(() => {
     window.localStorage.setItem('site-language', language)
+    document.cookie = `${SITE_LANGUAGE_COOKIE}=${language}; path=/; max-age=31536000; samesite=lax`
     document.documentElement.lang = language === 'am' ? 'am' : 'en'
   }, [language])
 
