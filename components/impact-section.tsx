@@ -3,35 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Church, Users, TrendingUp, Heart } from 'lucide-react'
-
-const stats = [
-  {
-    icon: Church,
-    value: 143,
-    label: 'Local Churches',
-    description: 'Established across Ethiopia',
-  },
-  {
-    icon: Users,
-    value: 132456,
-    label: 'Believers',
-    description: 'Walking in faith',
-  },
-  {
-    icon: TrendingUp,
-    value: 30,
-    suffix: '+',
-    label: 'Churches Planted',
-    description: 'Historically in a single period',
-  },
-  {
-    icon: Heart,
-    value: 65,
-    suffix: '+',
-    label: 'Years of Ministry',
-    description: 'Faithful service since 1960',
-  },
-]
+import type { SiteContent } from '@/lib/site-content'
 
 function AnimatedCounter({ 
   value, 
@@ -76,9 +48,37 @@ function AnimatedCounter({
   )
 }
 
-export function ImpactSection() {
+export function ImpactSection({ siteContent }: { siteContent: SiteContent }) {
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+  const stats = [
+    {
+      icon: Church,
+      value: siteContent.localChurches,
+      label: 'Local Churches',
+      description: 'Established across Ethiopia',
+    },
+    {
+      icon: Users,
+      value: siteContent.believersNationwide,
+      label: 'Believers',
+      description: 'Walking in faith',
+    },
+    {
+      icon: TrendingUp,
+      value: siteContent.churchesPlanted,
+      suffix: siteContent.churchesPlantedSuffix,
+      label: 'Churches Planted',
+      description: 'Historically in a single period',
+    },
+    {
+      icon: Heart,
+      value: siteContent.yearsOfMinistry,
+      suffix: siteContent.yearsOfMinistrySuffix,
+      label: 'Years of Ministry',
+      description: 'Faithful service since 1960',
+    },
+  ]
 
   useEffect(() => {
     const observer = new IntersectionObserver(

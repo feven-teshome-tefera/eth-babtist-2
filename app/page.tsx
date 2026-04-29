@@ -1,5 +1,6 @@
 import { Navigation } from '@/components/navigation'
 import { Hero } from '@/components/hero'
+import { AnnouncementSection } from '@/components/announcement-section'
 import { AboutSection } from '@/components/about-section'
 import { MissionSection } from '@/components/mission-section'
 import { ValuesSection } from '@/components/values-section'
@@ -8,7 +9,9 @@ import { LeadershipSection } from '@/components/leadership-section'
 import { ContactSection } from '@/components/contact-section'
 import { Footer } from '@/components/footer'
 import Script from 'next/script'
-import { getServerSiteCopy } from '@/lib/site-language'
+import { getServerLanguage } from '@/lib/site-language'
+import { siteCopy } from '@/lib/site-copy'
+import { getSiteContent } from '@/lib/supabase/server'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
 
@@ -35,7 +38,9 @@ const organizationSchema = {
 }
 
 export default async function Home() {
-  const copy = await getServerSiteCopy()
+  const language = await getServerLanguage()
+  const copy = siteCopy[language]
+  const siteContent = await getSiteContent()
 
   return (
     <main className="min-h-screen">
@@ -45,12 +50,13 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
       <Navigation />
-      <Hero copy={copy} />
+      <Hero copy={copy} siteContent={siteContent} />
+      <AnnouncementSection language={language} siteContent={siteContent} />
       <AboutSection />
       <MissionSection />
       <ValuesSection />
       <FaithSection />
-      <LeadershipSection />
+      <LeadershipSection siteContent={siteContent} />
       <ContactSection />
       <Footer copy={copy} />
     </main>

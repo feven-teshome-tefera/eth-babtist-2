@@ -213,3 +213,26 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+.bg-primary-gradient {
+  background: linear-gradient(140deg, #331660 0%, #41206f 58%, #331660 100%);
+}
+
+.text-primary-gradient {
+  background: linear-gradient(140deg, #331660 0%, #41206f 58%, #331660 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.page-shell {
+  @apply pt-24;
+}
+
+.section-shell {
+  @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+.glass-card {
+  @apply rounded-3xl border border-white/55 bg-white/70 shadow-[0_18px_50px_-30px_rgba(76,29,149,0.45)] backdrop-blur;
+}

@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import { ChevronDown, Users, BookOpen, Church } from 'lucide-react'
 import type { SiteCopy } from '@/lib/site-copy'
+import type { SiteContent } from '@/lib/site-content'
 
-export function Hero({ copy }: { copy: SiteCopy }) {
+export function Hero({ copy, siteContent }: { copy: SiteCopy; siteContent: SiteContent }) {
   return (
     <section
       id="home"
@@ -47,17 +48,24 @@ export function Hero({ copy }: { copy: SiteCopy }) {
         <div className="mx-auto mt-14 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-3">
           <div className="flex flex-col items-center gap-2 rounded-lg border border-white/[0.15] bg-white/[0.08] p-6 backdrop-blur-sm">
             <Church className="h-8 w-8 text-gold" />
-            <span className="text-3xl font-bold text-white">{copy.hero.stats[0].value}</span>
+            <span className="text-3xl font-bold text-white">
+              {siteContent.localChurches.toLocaleString()}
+            </span>
             <span className="text-sm text-white/70">{copy.hero.stats[0].label}</span>
           </div>
           <div className="flex flex-col items-center gap-2 rounded-lg border border-white/[0.15] bg-white/[0.08] p-6 backdrop-blur-sm">
             <Users className="h-8 w-8 text-gold" />
-            <span className="text-3xl font-bold text-white">{copy.hero.stats[1].value}</span>
+            <span className="text-3xl font-bold text-white">
+              {siteContent.believersNationwide.toLocaleString()}
+            </span>
             <span className="text-sm text-white/70">{copy.hero.stats[1].label}</span>
           </div>
           <div className="flex flex-col items-center gap-2 rounded-lg border border-white/[0.15] bg-white/[0.08] p-6 backdrop-blur-sm">
             <BookOpen className="h-8 w-8 text-gold" />
-            <span className="text-3xl font-bold text-white">{copy.hero.stats[2].value}</span>
+            <span className="text-3xl font-bold text-white">
+              {siteContent.yearsOfMinistry.toLocaleString()}
+              {siteContent.yearsOfMinistrySuffix}
+            </span>
             <span className="text-sm text-white/70">{copy.hero.stats[2].label}</span>
           </div>
         </div>

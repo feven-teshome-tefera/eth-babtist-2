@@ -9,9 +9,7 @@ next.user-config.*
 .codex
 
 # Environment variables
-.env
-.env.*
-.env*.local
+.env*
 !.env.example
 
 # Common ignores

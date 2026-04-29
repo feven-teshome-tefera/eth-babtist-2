@@ -14,6 +14,7 @@ export const siteCopy = {
     nav: {
       links: [
         { href: '#home', label: 'Home' },
+        { href: '#announcements', label: 'Announcements' },
         { href: '#about', label: 'About' },
         { href: '#mission', label: 'Mission' },
         { href: '#values', label: 'Values' },
@@ -264,12 +265,26 @@ export const siteCopy = {
         'Over the past years, our denominational office has been actively engaged in encouraging evangelism, supporting church planting efforts, strengthening congregations, and training pastors and ministry leaders. We remain committed to expanding this work across Ethiopia and beyond.',
         'I invite you to join us in prayer, partnership, and faithful service as we work together to fulfill the mission God has entrusted to His church.',
       ],
+      boardChairMessageTitle: 'Message from the Board Chair',
+      boardChairMessageIntro: [
+        'Grace and peace to you in the name of our Lord Jesus Christ.',
+        'I am grateful to God for the faithful work being carried out through the Emmanuel Baptist Church of Ethiopia. As our President has clearly stated, our denomination is committed to the mission of preaching the Gospel, making true disciples of Jesus Christ, and planting biblical and healthy churches.',
+        'Over the past years, we have witnessed encouraging progress as our churches and leaders have labored together to strengthen existing congregations, establish new churches, and equip ministers with sound biblical teaching. These efforts continue to guide our denomination as we seek to remain faithful to the Word of God and the Great Commission.',
+      ],
+      boardChairMessageFull: [
+        'As the Board, we remain committed to supporting and guiding this vision so that our churches may continue to grow in biblical faithfulness and gospel impact.',
+        'May the Lord continue to bless and strengthen our ministry for the advancement of His Kingdom.',
+      ],
       readLess: 'Read less',
       readFull: 'Read full message',
       name: 'Pastor Yonas Fikadu',
       role: 'President, Emmanuel Baptist Church of Ethiopia',
+      boardChairName: 'Afera Asmerom',
+      boardChairRole: 'Board Chair, Emmanuel Baptist Church of Ethiopia',
       profileAlt: 'Leadership portrait',
+      boardChairProfileAlt: 'Board Chair portrait',
       president: 'President',
+      boardChair: 'Board Chair',
       servingSince: 'Serving Since',
       credentials: 'Credentials',
       credentialsValue: 'BA, M.Div. in Theology, Doctor of Ministry (D.Min.), B.A. in Leadership and Management',
@@ -279,6 +294,10 @@ export const siteCopy = {
       affiliationsSubtitle: 'Emmanuel Baptist Church of Ethiopia is affiliated with',
       legal:
         'Emmanuel Baptist Church of Ethiopia is a legally registered religious organization under the laws of the Federal Democratic Republic of Ethiopia through the Ethiopian Council of Gospel Believers’ Churches, holding Registration Certificate No. 0824.',
+    },
+    announcement: {
+      title: 'Latest Announcements',
+      scrollHint: 'Scroll sideways to see more',
     },
     contact: {
       badge: 'Get in Touch',
@@ -342,6 +361,7 @@ export const siteCopy = {
     nav: {
       links: [
         { href: '#home', label: 'መነሻ' },
+        { href: '#announcements', label: 'ማስታወቂያዎች' },
         { href: '#about', label: 'ስለ እኛ' },
         { href: '#mission', label: 'ተልዕኮ' },
         { href: '#values', label: 'እሴቶች' },
@@ -559,12 +579,26 @@ export const siteCopy = {
         'ባለፉት ዓመታት የማህበራችን ቢሮ ወንጌል ስብከትን ለማበረታታት፣ የቤተ ክርስቲያን መትከልን ለማገዝ፣ ጉባኤዎችን ለማጠናከር እና እረኞችን ለማሰልጠን በትጋት ሰርቷል።',
         'እግዚአብሔር ለቤተ ክርስቲያኑ የሰጠውን ተልዕኮ በአንድነት እንፈጽም ዘንድ በጸሎት፣ በአጋርነት እና በታማኝ አገልግሎት እንድትቀላቀሉ እጋብዛችኋለሁ።',
       ],
+      boardChairMessageTitle: 'ከቦርድ ሰብሳቢው የተላለፈ መልእክት',
+      boardChairMessageIntro: [
+        'በጌታችን በኢየሱስ ክርስቶስ ስም ጸጋና ሰላም ለእናንተ ይሁን።',
+        'በኢትዮጵያ አማኑኤል ባፕቲስት ቤተ ክርስቲያን እየተከናወነ ላለው ታማኝ አገልግሎት እግዚአብሔርን አመሰግናለሁ። ፕሬዚዳንታችን በግልጽ እንደገለጹት ማህበራችን ወንጌልን ለመስበክ፣ እውነተኛ የኢየሱስ ክርስቶስ ደቀ መዛሙርትን ለማፍራት እና መጽሐፍ ቅዱሳዊ ጤናማ አብያተ ክርስቲያናትን ለመትከል ቁርጠኛ ነው።',
+        'ባለፉት ዓመታት ቤተ ክርስቲያናችንና መሪዎቻችን በአንድነት ተግተው ነባር ጉባኤዎችን ሲያጠናክሩ፣ አዳዲስ ቤተ ክርስቲያናትን ሲተክሉ እና አገልጋዮችን በጠንካራ መጽሐፍ ቅዱሳዊ ትምህርት ሲያበቁ የሚያበረታታ እድገት አይተናል። እነዚህ ጥረቶች ለቃሉ እና ለታላቁ ተልዕኮ ታማኝ ሆነን እንድንቀጥል ማህበራችንን እየመሩ ናቸው።',
+      ],
+      boardChairMessageFull: [
+        'እንደ ቦርድ ይህን ራእይ በመደገፍና በመምራት ቤተ ክርስቲያናችን በመጽሐፍ ቅዱሳዊ ታማኝነትና በወንጌል ተጽእኖ እንዲያድጉ ቁርጠኞች ሆነን እንቀጥላለን።',
+        'ጌታ ለመንግሥቱ መስፋፋት አገልግሎታችንን መባረክና ማበርታት እንዲቀጥል እጸልያለሁ።',
+      ],
       readLess: 'አነስ አሳይ',
       readFull: 'ሙሉ መልእክቱን አንብብ',
       name: 'ፓስተር ዮናስ ፍቃዱ',
       role: 'ፕሬዚዳንት፣ አማኑኤል ባፕቲስት ቤተ ክርስቲያን በኢትዮጵያ',
+      boardChairName: 'Afera Asmerom',
+      boardChairRole: 'የቦርድ ሰብሳቢ፣ አማኑኤል ባፕቲስት ቤተ ክርስቲያን በኢትዮጵያ',
       profileAlt: 'የመሪው ፎቶ',
+      boardChairProfileAlt: 'የቦርድ ሰብሳቢው ፎቶ',
       president: 'ፕሬዚዳንት',
+      boardChair: 'የቦርድ ሰብሳቢ',
       servingSince: 'ከዚህ ጀምሮ አገልግሎት',
       credentials: 'የትምህርት ደረጃ',
       credentialsValue: 'BA, M.Div. in Theology, Doctor of Ministry (D.Min.), B.A. in Leadership and Management',
@@ -574,6 +608,10 @@ export const siteCopy = {
       affiliationsSubtitle: 'አማኑኤል ባፕቲስት ቤተ ክርስቲያን ከእነዚህ ጋር ተባብራለች',
       legal:
         'አማኑኤል ባፕቲስት ቤተ ክርስቲያን በኢትዮጵያ በወንጌላውያን አማኞች ቤተ ክርስቲያናት ምክር ቤት አማካኝነት በሕጋዊ ምዝገባ የተመዘገበች የሃይማኖት ድርጅት ናት።',
+    },
+    announcement: {
+      title: 'የቅርብ ጊዜ ማስታወቂያዎች',
+      scrollHint: 'ተጨማሪ ለማየት ወደ ጎን ያንሸራትቱ',
     },
     contact: {
       badge: 'ያግኙን',

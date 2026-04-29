@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Analytics } from '@vercel/analytics/next'
 import { LanguageProvider } from '@/components/language-provider'
+import { Toaster } from '@/components/ui/sonner'
 import { getServerLanguage } from '@/lib/site-language'
 import './globals.css'
 
@@ -91,6 +92,7 @@ export default async function RootLayout({
     <html lang={language} className="bg-background scroll-smooth">
       <body className="font-sans antialiased">
         <LanguageProvider initialLanguage={language}>{children}</LanguageProvider>
+        <Toaster position="top-center" offset={20} />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
