@@ -129,7 +129,7 @@ export function Navigation() {
               size="sm"
               className={cn(!isScrolled && 'border-white/30 text-white hover:bg-white/10')}
             >
-              <Link href="https://t.me/+LDH9i5_5DitiZDA8" target="_blank">
+              <Link href="https://t.me/+UItuI-4qYUBmYzNk" target="_blank">
                 {copy.nav.joinTelegram}
               </Link>
             </Button>
@@ -228,7 +228,7 @@ export function Navigation() {
                 <div className="mt-6 flex flex-col gap-3 px-4">
                   <Button asChild variant="outline" className="w-full">
                     <Link
-                      href="https://t.me/+LDH9i5_5DitiZDA8"
+                      href="https://t.me/+UItuI-4qYUBmYzNk"
                       target="_blank"
                       onClick={handleLinkClick}
                     >

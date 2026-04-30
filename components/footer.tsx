@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, MessageCircle, Building2 } from 'lucide-react'
 import type { SiteCopy } from '@/lib/site-copy'
 
 const socialLinks = [
-  { href: 'https://t.me/+LDH9i5_5DitiZDA8', icon: MessageCircle, label: 'Telegram' },
+  { href: 'https://t.me/+UItuI-4qYUBmYzNk', icon: MessageCircle, label: 'Telegram' },
 ]
 
 export function Footer({ copy }: { copy: SiteCopy }) {
@@ -87,7 +87,7 @@ export function Footer({ copy }: { copy: SiteCopy }) {
               </li>
               <li>
                 <a
-                  href="https://t.me/+LDH9i5_5DitiZDA8"
+                  href="https://t.me/+UItuI-4qYUBmYzNk"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-sm text-white/60 transition-colors hover:text-gold"

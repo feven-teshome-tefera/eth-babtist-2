@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Mail, Phone, Award, Calendar, ChevronDown, ChevronUp, Quote } from 'lucide-react'
 import { useLanguage, useSiteCopy } from '@/components/language-provider'
 import {
+  getLocalizedBoardChairMessage,
   getLocalizedMessage,
   getMessageParagraphs,
   type SiteContent,
@@ -20,10 +21,7 @@ export function LeadershipSection({ siteContent }: { siteContent: SiteContent })
   const messageParagraphs = getMessageParagraphs(getLocalizedMessage(siteContent, language))
   const visibleParagraphs = messageParagraphs.slice(0, 3)
   const extraParagraphs = messageParagraphs.slice(3)
-  const boardChairMessageParagraphs = [
-    ...copy.leadership.boardChairMessageIntro,
-    ...copy.leadership.boardChairMessageFull,
-  ]
+  const boardChairMessageParagraphs = getMessageParagraphs(getLocalizedBoardChairMessage(siteContent, language))
   const visibleBoardChairParagraphs = boardChairMessageParagraphs.slice(0, 3)
   const extraBoardChairParagraphs = boardChairMessageParagraphs.slice(3)
 
@@ -233,7 +231,7 @@ export function LeadershipSection({ siteContent }: { siteContent: SiteContent })
                 <div className="relative mb-6">
                   <div className="mx-auto flex aspect-[4/5] max-w-xs items-center justify-center overflow-hidden rounded-lg border border-border bg-navy/5">
                     <img
-                      src="/board1.png"
+                      src={siteContent.boardChairPhotoUrl}
                       alt={copy.leadership.boardChairProfileAlt}
                       className="h-full w-full object-cover"
                     />
@@ -241,9 +239,9 @@ export function LeadershipSection({ siteContent }: { siteContent: SiteContent })
                 </div>
 
                 <div className="text-center">
-                  <h3 className="text-2xl font-bold text-navy">{copy.leadership.boardChairName}</h3>
+                  <h3 className="text-2xl font-bold text-navy">{siteContent.boardChairName}</h3>
                   <p className="mt-1 font-medium text-gold">{copy.leadership.boardChair}</p>
-                  <p className="mt-3 text-sm text-muted-foreground">{copy.leadership.boardChairRole}</p>
+                  <p className="mt-3 text-sm text-muted-foreground">{siteContent.boardChairRole}</p>
                 </div>
               </CardContent>
             </Card>

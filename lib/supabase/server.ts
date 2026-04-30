@@ -18,10 +18,11 @@ export async function getSiteContent(): Promise<SiteContent> {
     },
   })
 
-  const [homepage, leadership, presidentMessage, announcements, affiliations] = await Promise.all([
+  const [homepage, leadership, presidentMessage, boardChair, announcements, affiliations] = await Promise.all([
     fetchHomepageRecord(supabase),
     fetchLeadershipRecord(supabase),
     fetchPresidentMessageRecord(supabase),
+    fetchBoardChairRecord(supabase),
     fetchAnnouncementsRecord(supabase),
     fetchAffiliationsRecord(supabase),
   ])
@@ -36,12 +37,17 @@ export async function getSiteContent(): Promise<SiteContent> {
     pastorName: leadership?.name ?? defaultSiteContent.pastorName,
     pastorRole: leadership?.role ?? defaultSiteContent.pastorRole,
     pastorPhotoUrl: leadership?.photoUrl ?? defaultSiteContent.pastorPhotoUrl,
+    boardChairName: boardChair?.name ?? defaultSiteContent.boardChairName,
+    boardChairRole: boardChair?.role ?? defaultSiteContent.boardChairRole,
+    boardChairPhotoUrl: boardChair?.photoUrl ?? defaultSiteContent.boardChairPhotoUrl,
     servingSince: leadership?.servingSince ?? defaultSiteContent.servingSince,
     credentials: leadership?.credentials ?? defaultSiteContent.credentials,
     email: leadership?.email ?? defaultSiteContent.email,
     phone: leadership?.phone ?? defaultSiteContent.phone,
     messageEn: presidentMessage?.messageEn ?? defaultSiteContent.messageEn,
     messageAm: presidentMessage?.messageAm ?? defaultSiteContent.messageAm,
+    boardChairMessageEn: boardChair?.messageEn ?? defaultSiteContent.boardChairMessageEn,
+    boardChairMessageAm: boardChair?.messageAm ?? defaultSiteContent.boardChairMessageAm,
     announcementTitleEn: firstAnnouncement?.titleEn ?? defaultSiteContent.announcementTitleEn,
     announcementTitleAm: firstAnnouncement?.titleAm ?? defaultSiteContent.announcementTitleAm,
     announcementBodyEn: firstAnnouncement?.bodyEn ?? defaultSiteContent.announcementBodyEn,
@@ -71,6 +77,14 @@ type LeadershipRecord = {
 }
 
 type PresidentMessageRecord = {
+  messageEn: string
+  messageAm: string
+}
+
+type BoardChairRecord = {
+  name: string
+  role: string
+  photoUrl: string
   messageEn: string
   messageAm: string
 }
@@ -149,6 +163,34 @@ async function fetchPresidentMessageRecord(supabase: AnySupabaseClient) {
       messageEn: messageEnColumn ? getString(row[messageEnColumn], defaultSiteContent.messageEn) : defaultSiteContent.messageEn,
       messageAm: messageAmColumn ? getString(row[messageAmColumn], defaultSiteContent.messageAm) : defaultSiteContent.messageAm,
     } satisfies PresidentMessageRecord
+  }
+
+  return null
+}
+
+async function fetchBoardChairRecord(supabase: AnySupabaseClient) {
+  for (const tableName of ['Board Chair', 'board_chair', 'board chair']) {
+    const { data, error } = await supabase.from(tableName).select('*').order('id', { ascending: true }).limit(1).maybeSingle()
+
+    if (isMissingTableError(error?.message, tableName)) {
+      continue
+    }
+
+    if (error || !data) {
+      return null
+    }
+
+    const row = data as RowRecord
+    const messageEnColumn = findMessageColumn(row, 'en')
+    const messageAmColumn = findMessageColumn(row, 'am')
+
+    return {
+      name: getString(row.name, defaultSiteContent.boardChairName),
+      role: getString(row.role, defaultSiteContent.boardChairRole),
+      photoUrl: getString(row.photo_url, defaultSiteContent.boardChairPhotoUrl),
+      messageEn: messageEnColumn ? getString(row[messageEnColumn], defaultSiteContent.boardChairMessageEn) : defaultSiteContent.boardChairMessageEn,
+      messageAm: messageAmColumn ? getString(row[messageAmColumn], defaultSiteContent.boardChairMessageAm) : defaultSiteContent.boardChairMessageAm,
+    } satisfies BoardChairRecord
   }
 
   return null

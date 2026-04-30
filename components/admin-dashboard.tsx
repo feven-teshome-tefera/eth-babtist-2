@@ -69,6 +69,19 @@ type PresidentMessageRecord = {
   messageAmColumn: string | null
 }
 
+type BoardChairRecord = {
+  tableName: string
+  id: number
+  name: string
+  role: string
+  roleColumn: string | null
+  photoUrl: string
+  messageEn: string
+  messageAm: string
+  messageEnColumn: string | null
+  messageAmColumn: string | null
+}
+
 type AffiliationsRecord = {
   tableName: string
   items: SiteAffiliation[]
@@ -119,6 +132,11 @@ export function AdminDashboard() {
   const [presidentMessageRowId, setPresidentMessageRowId] = useState<number | null>(null)
   const [presidentMessageEnColumn, setPresidentMessageEnColumn] = useState<string | null>(null)
   const [presidentMessageAmColumn, setPresidentMessageAmColumn] = useState<string | null>(null)
+  const [boardChairTableName, setBoardChairTableName] = useState<string | null>(null)
+  const [boardChairRowId, setBoardChairRowId] = useState<number | null>(null)
+  const [boardChairRoleColumn, setBoardChairRoleColumn] = useState<string | null>(null)
+  const [boardChairEnColumn, setBoardChairEnColumn] = useState<string | null>(null)
+  const [boardChairAmColumn, setBoardChairAmColumn] = useState<string | null>(null)
   const [affiliationsTableName, setAffiliationsTableName] = useState<string | null>(null)
 
   function isMissingTableError(message: string, tableName: string) {
@@ -161,6 +179,12 @@ export function AdminDashboard() {
     }
 
     return entries[language === 'en' ? 0 : 1]?.[0] ?? null
+  }
+
+  function findRoleColumn(record: Record<string, unknown>) {
+    const entries = Object.entries(record).filter(([key]) => key !== 'id' && key !== 'created_at')
+    const match = entries.find(([key]) => key.toLowerCase() === 'role')
+    return match?.[0] ?? null
   }
 
   async function fetchHomepageRecord() {
@@ -375,6 +399,63 @@ export function AdminDashboard() {
     return null
   }
 
+  async function fetchBoardChairRecord() {
+    if (!supabase) {
+      return null
+    }
+
+    const tableCandidates = ['Board Chair', 'board_chair', 'board chair']
+    let missingTableCount = 0
+
+    for (const tableName of tableCandidates) {
+      const { data, error: boardChairError } = await supabase.from(tableName).select('*').order('id', { ascending: true }).limit(1).maybeSingle()
+
+      if (boardChairError) {
+        if (isMissingTableError(boardChairError.message, tableName)) {
+          missingTableCount += 1
+          continue
+        }
+
+        throw boardChairError
+      }
+
+      const row = (data ?? {}) as Record<string, unknown>
+      const roleColumn = findRoleColumn(row)
+      const messageEnColumn = findMessageColumn(row, 'en')
+      const messageAmColumn = findMessageColumn(row, 'am')
+      const rowId = Number(row.id ?? 1)
+
+      setBoardChairTableName(tableName)
+      setBoardChairRowId(rowId)
+      setBoardChairRoleColumn(roleColumn)
+      setBoardChairEnColumn(messageEnColumn)
+      setBoardChairAmColumn(messageAmColumn)
+
+      return {
+        tableName,
+        id: rowId,
+        name: String(row.name ?? ''),
+        role: roleColumn ? String(row[roleColumn] ?? defaultSiteContent.boardChairRole) : defaultSiteContent.boardChairRole,
+        roleColumn,
+        photoUrl: String(row.photo_url ?? ''),
+        messageEn: messageEnColumn ? String(row[messageEnColumn] ?? '') : '',
+        messageAm: messageAmColumn ? String(row[messageAmColumn] ?? '') : '',
+        messageEnColumn,
+        messageAmColumn,
+      } satisfies BoardChairRecord
+    }
+
+    if (missingTableCount === tableCandidates.length) {
+      setBoardChairTableName(null)
+      setBoardChairRowId(null)
+      setBoardChairRoleColumn(null)
+      setBoardChairEnColumn(null)
+      setBoardChairAmColumn(null)
+    }
+
+    return null
+  }
+
   async function fetchAffiliationsRecord() {
     if (!supabase) {
       return null
@@ -556,6 +637,7 @@ export function AdminDashboard() {
     let leadershipRecord: LeadershipRecord | null = null
     let announcementsRecord: AnnouncementsRecord | null = null
     let presidentMessageRecord: PresidentMessageRecord | null = null
+    let boardChairRecord: BoardChairRecord | null = null
     let affiliationsRecord: AffiliationsRecord | null = null
 
     try {
@@ -593,6 +675,13 @@ export function AdminDashboard() {
       return
     }
 
+    try {
+      boardChairRecord = await fetchBoardChairRecord()
+    } catch (boardChairError) {
+      setError(boardChairError instanceof Error ? boardChairError.message : 'Failed to load board chair data.')
+      return
+    }
+
     const [{ data: contentData, error: contentError }] = await Promise.all([
       supabase.from('site_content').select('*').eq('slug', 'primary').maybeSingle(),
     ])
@@ -622,12 +711,17 @@ export function AdminDashboard() {
     normalizedContent.pastorName = leadershipRecord?.name ?? ''
     normalizedContent.pastorRole = leadershipRecord?.role ?? ''
     normalizedContent.pastorPhotoUrl = leadershipRecord?.photoUrl ?? ''
+    normalizedContent.boardChairName = boardChairRecord?.name ?? defaultSiteContent.boardChairName
+    normalizedContent.boardChairRole = boardChairRecord?.role ?? defaultSiteContent.boardChairRole
+    normalizedContent.boardChairPhotoUrl = boardChairRecord?.photoUrl ?? ''
     normalizedContent.servingSince = leadershipRecord?.servingSince ?? ''
     normalizedContent.email = leadershipRecord?.email ?? ''
     normalizedContent.phone = leadershipRecord?.phone ?? ''
     normalizedContent.credentials = leadershipRecord?.credentials ?? ''
     normalizedContent.messageEn = presidentMessageRecord?.messageEn ?? ''
     normalizedContent.messageAm = presidentMessageRecord?.messageAm ?? ''
+    normalizedContent.boardChairMessageEn = boardChairRecord?.messageEn ?? ''
+    normalizedContent.boardChairMessageAm = boardChairRecord?.messageAm ?? ''
 
     const normalizedAnnouncements = announcementsRecord?.items ?? []
     const normalizedAffiliations = affiliationsRecord?.items ?? []
@@ -901,6 +995,88 @@ export function AdminDashboard() {
     }
 
     setMessage('President message updated.')
+    setSavingKey(null)
+    return true
+  }
+
+  async function saveBoardChair(partial: Partial<SiteContent> = {}) {
+    if (!supabase) {
+      setError('Supabase is not configured.')
+      return false
+    }
+
+    const nextContent = {
+      ...content,
+      ...partial,
+    }
+
+    setError('')
+    setSavingKey('board-chair')
+
+    let targetTableName = boardChairTableName
+    let targetRowId = boardChairRowId
+    const roleColumn = boardChairRoleColumn
+    let messageEnColumn = boardChairEnColumn
+    let messageAmColumn = boardChairAmColumn
+
+    if (!targetTableName || !messageEnColumn || !messageAmColumn) {
+      try {
+        const record = await fetchBoardChairRecord()
+        targetTableName = record?.tableName ?? null
+        targetRowId = record?.id ?? 1
+        messageEnColumn = record?.messageEnColumn ?? null
+        messageAmColumn = record?.messageAmColumn ?? null
+      } catch (boardChairError) {
+        setSavingKey(null)
+        setError(boardChairError instanceof Error ? boardChairError.message : 'Failed to resolve board chair table.')
+        return false
+      }
+    }
+
+    if (!targetTableName || !messageEnColumn || !messageAmColumn) {
+      setSavingKey(null)
+      setError('Could not find a `Board Chair` table to save into.')
+      return false
+    }
+
+    const payload: Record<string, string> = {
+      name: nextContent.boardChairName,
+      photo_url: nextContent.boardChairPhotoUrl,
+      [messageEnColumn]: nextContent.boardChairMessageEn,
+      [messageAmColumn]: nextContent.boardChairMessageAm,
+    }
+
+    if (roleColumn) {
+      payload[roleColumn] = nextContent.boardChairRole
+    }
+
+    const { data: updatedRows, error: updateError } = await supabase
+      .from(targetTableName)
+      .update(payload)
+      .eq('id', targetRowId ?? 1)
+      .select('id')
+
+    if (updateError && !isMissingTableError(updateError.message, targetTableName)) {
+      setSavingKey(null)
+      setError(updateError.message)
+      return false
+    }
+
+    if (!updatedRows || updatedRows.length === 0) {
+      const { error: insertError } = await supabase.from(targetTableName).insert({
+        id: targetRowId ?? 1,
+        ...payload,
+      })
+
+      if (insertError && !isMissingTableError(insertError.message, targetTableName)) {
+        setSavingKey(null)
+        setError(insertError.message)
+        return false
+      }
+    }
+
+    setContent(nextContent)
+    setMessage('Board chair updated.')
     setSavingKey(null)
     return true
   }
@@ -1448,6 +1624,63 @@ export function AdminDashboard() {
             </ColumnPanel>
 
             <ColumnPanel
+              title="Board Chair"
+              showAdd={false}
+              className="xl:order-5 xl:col-span-2 2xl:order-5 2xl:col-span-2"
+            >
+              <div className="grid gap-4 xl:grid-cols-2">
+                <ItemCard title="Profile">
+                  <p className="mb-3 text-sm text-foreground/75">Board chair details shown in the leadership section.</p>
+                  <div className="grid gap-3">
+                    <Field label="Name">
+                      <Input value={content.boardChairName} onChange={(event) => updateField('boardChairName', event.target.value)} />
+                    </Field>
+                    {boardChairRoleColumn ? (
+                      <Field label="Role">
+                        <Input value={content.boardChairRole} onChange={(event) => updateField('boardChairRole', event.target.value)} />
+                      </Field>
+                    ) : null}
+                    <Field label="Photo URL">
+                      <ImageField
+                        label="Board Chair Photo"
+                        value={content.boardChairPhotoUrl}
+                        bucketName="Board Chair"
+                        onChange={(value) => updateField('boardChairPhotoUrl', value)}
+                        onUploadComplete={(value) => saveBoardChair({ boardChairPhotoUrl: value })}
+                        onError={setError}
+                      />
+                    </Field>
+                  </div>
+                </ItemCard>
+
+                <ItemCard title="Messages">
+                  <div className="grid gap-3">
+                    <Field label="Message (English)">
+                      <Textarea
+                        className="min-h-40"
+                        value={content.boardChairMessageEn}
+                        onChange={(event) => updateField('boardChairMessageEn', event.target.value)}
+                      />
+                    </Field>
+                    <Field label="Message (Amharic)">
+                      <Textarea
+                        className="min-h-40"
+                        value={content.boardChairMessageAm}
+                        onChange={(event) => updateField('boardChairMessageAm', event.target.value)}
+                      />
+                    </Field>
+                  </div>
+                </ItemCard>
+              </div>
+              <div className="flex gap-2">
+                <ActionButton
+                  label={savingKey === 'board-chair' ? 'Saving…' : 'Save'}
+                  onClick={saveBoardChair}
+                />
+              </div>
+            </ColumnPanel>
+
+            <ColumnPanel
               title="Announcements"
               addLabel="Add"
               onAddClick={openAddAnnouncement}
@@ -1759,12 +1992,14 @@ function ImageField({
   label,
   value,
   onChange,
+  onUploadComplete,
   onError,
   bucketName = 'image',
 }: {
   label: string
   value: string
   onChange: (value: string) => void
+  onUploadComplete?: (value: string) => void | Promise<void>
   onError?: (message: string) => void
   bucketName?: string
 }) {
@@ -1808,6 +2043,7 @@ function ImageField({
         } = supabase.storage.from(bucketName).getPublicUrl(filePath)
 
         onChange(publicUrl)
+        await onUploadComplete?.(publicUrl)
         setPreviewUrl('')
         setUploading(false)
         event.target.value = ''
@@ -1825,6 +2061,7 @@ function ImageField({
     } = supabase.storage.from(bucketName).getPublicUrl(filePath)
 
     onChange(publicUrl)
+    await onUploadComplete?.(publicUrl)
     setPreviewUrl('')
     setUploading(false)
     event.target.value = ''

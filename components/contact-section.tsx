@@ -175,7 +175,7 @@ export function ContactSection() {
                   <div>
                     <h4 className="mb-1 font-semibold text-white">{copy.contact.telegram}</h4>
                     <a
-                      href="https://t.me/+LDH9i5_5DitiZDA8"
+                      href="https://t.me/+UItuI-4qYUBmYzNk"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-white/70 transition-colors hover:text-gold"

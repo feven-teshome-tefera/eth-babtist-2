@@ -34,7 +34,7 @@ const organizationSchema = {
   },
   telephone: '+251 111 56125',
   email: 'ebceethiopia@gmail.com',
-  sameAs: ['https://t.me/+LDH9i5_5DitiZDA8'],
+  sameAs: ['https://t.me/+UItuI-4qYUBmYzNk'],
 }
 
 export default async function Home() {

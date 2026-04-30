@@ -26,12 +26,17 @@ export type SiteContent = {
   pastorName: string
   pastorRole: string
   pastorPhotoUrl: string
+  boardChairName: string
+  boardChairRole: string
+  boardChairPhotoUrl: string
   servingSince: string
   credentials: string
   email: string
   phone: string
   messageEn: string
   messageAm: string
+  boardChairMessageEn: string
+  boardChairMessageAm: string
   announcementBadgeEn: string
   announcementBadgeAm: string
   announcementTitleEn: string
@@ -53,6 +58,9 @@ export const defaultSiteContent: SiteContent = {
   pastorName: 'Pastor Yonas Fikadu',
   pastorRole: 'President, Emmanuel Baptist Church of Ethiopia',
   pastorPhotoUrl: '/ChatGPT Image Apr 17, 2026, 07_43_52 PM.png',
+  boardChairName: 'Afera Asmerom',
+  boardChairRole: 'Board Chair, Emmanuel Baptist Church of Ethiopia',
+  boardChairPhotoUrl: '/board1.png',
   servingSince: '2019',
   credentials:
     'BA, M.Div. in Theology, Doctor of Ministry (D.Min.), B.A. in Leadership and Management',
@@ -75,6 +83,20 @@ export const defaultSiteContent: SiteContent = {
     'አገልጋዮችን ማብቃት እና በጠንካራ የመጽሐፍ ቅዱስ ትምህርት አዲስ ትውልድ መሪዎችን ማስነሳት የአገልግሎታችን አስፈላጊ ክፍል ነው።',
     'ባለፉት ዓመታት የማህበራችን ቢሮ ወንጌል ስብከትን ለማበረታታት፣ የቤተ ክርስቲያን መትከልን ለማገዝ፣ ጉባኤዎችን ለማጠናከር እና እረኞችን ለማሰልጠን በትጋት ሰርቷል።',
     'እግዚአብሔር ለቤተ ክርስቲያኑ የሰጠውን ተልዕኮ በአንድነት እንፈጽም ዘንድ በጸሎት፣ በአጋርነት እና በታማኝ አገልግሎት እንድትቀላቀሉ እጋብዛችኋለሁ።',
+  ].join('\n\n'),
+  boardChairMessageEn: [
+    'Grace and peace to you in the name of our Lord Jesus Christ.',
+    'As Board Chair of Emmanuel Baptist Church of Ethiopia, I thank God for the unity, faithfulness, and generosity that continue to strengthen this denomination.',
+    'Our churches are called to stand firm on biblical truth, serve with humility, and work together in love so that the Gospel may reach more communities across Ethiopia.',
+    'The board remains committed to supporting the spiritual health, accountability, and long-term mission of our churches. We believe healthy leadership and faithful cooperation are essential for lasting impact.',
+    'I invite you to continue with us in prayer, sacrificial service, and partnership as we seek to honor Christ and advance His Kingdom together.',
+  ].join('\n\n'),
+  boardChairMessageAm: [
+    'በጌታችን በኢየሱስ ክርስቶስ ስም ጸጋና ሰላም ለእናንተ ይሁን።',
+    'የኢትዮጵያ አማኑኤል ባፕቲስት ቤተ ክርስቲያን የቦርድ ሰብሳቢ እንደመሆኔ ይህን ማህበር የሚያጠናክሩትን አንድነት፣ ታማኝነት እና ልግስና ስለሰጠን እግዚአብሔርን አመሰግናለሁ።',
+    'ቤተ ክርስቲያናችን በመጽሐፍ ቅዱሳዊ እውነት መጽናት፣ በትህትና ማገልገል እና በፍቅር በአንድነት መስራት አለባት ወንጌልም በኢትዮጵያ ውስጥ ለብዙ ማህበረሰቦች ይድረስ ዘንድ።',
+    'ቦርዱ የቤተ ክርስቲያናችንን መንፈሳዊ ጤና፣ ተጠያቂነት እና የረጅም ጊዜ ተልዕኮ ለመደገፍ ቁርጠኛ ነው። ጤናማ አመራር እና ታማኝ ትብብር ለረጅም ጊዜ ፍሬ እንዲያፈሩ አስፈላጊ መሆናቸውን እናምናለን።',
+    'ክርስቶስን እንድናከብር እና መንግሥቱን በአንድነት እንድናስፋፋ በጸሎት፣ በመስዋዕታዊ አገልግሎት እና በአጋርነት ከእኛ ጋር እንድትቀጥሉ እጋብዛችኋለሁ።',
   ].join('\n\n'),
   announcementBadgeEn: 'Announcement',
   announcementBadgeAm: 'ማስታወቂያ',
@@ -134,6 +156,13 @@ export function getLocalizedAnnouncement(content: SiteContent, language: Languag
   }
 }
 
+export function getLocalizedBoardChairMessage(content: SiteContent, language: Language) {
+  const preferredMessage = language === 'am' ? content.boardChairMessageAm : content.boardChairMessageEn
+  const fallbackMessage = language === 'am' ? content.boardChairMessageEn : content.boardChairMessageAm
+
+  return preferredMessage.trim() || fallbackMessage.trim()
+}
+
 export function normalizeSiteContent(record?: Record<string, unknown> | null): SiteContent {
   if (!record) {
     return defaultSiteContent
@@ -168,12 +197,17 @@ export function normalizeSiteContent(record?: Record<string, unknown> | null): S
     pastorName: getString(record.pastor_name, defaultSiteContent.pastorName),
     pastorRole: getString(record.pastor_role, defaultSiteContent.pastorRole),
     pastorPhotoUrl: getString(record.pastor_photo_url, defaultSiteContent.pastorPhotoUrl),
+    boardChairName: getString(record.board_chair_name, defaultSiteContent.boardChairName),
+    boardChairRole: getString(record.board_chair_role, defaultSiteContent.boardChairRole),
+    boardChairPhotoUrl: getString(record.board_chair_photo_url, defaultSiteContent.boardChairPhotoUrl),
     servingSince: getString(record.serving_since, defaultSiteContent.servingSince),
     credentials: getString(record.credentials, defaultSiteContent.credentials),
     email: getString(record.email, defaultSiteContent.email),
     phone: getString(record.phone, defaultSiteContent.phone),
     messageEn: getString(record.message_en, defaultSiteContent.messageEn),
     messageAm: getString(record.message_am, defaultSiteContent.messageAm),
+    boardChairMessageEn: getString(record.board_chair_message_en, defaultSiteContent.boardChairMessageEn),
+    boardChairMessageAm: getString(record.board_chair_message_am, defaultSiteContent.boardChairMessageAm),
     announcementBadgeEn: getString(record.announcement_badge_en, defaultSiteContent.announcementBadgeEn),
     announcementBadgeAm: getString(record.announcement_badge_am, defaultSiteContent.announcementBadgeAm),
     announcementTitleEn: getString(record.announcement_title_en, defaultSiteContent.announcementTitleEn),
