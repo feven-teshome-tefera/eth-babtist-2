@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   applicationName: 'Emmanuel Baptist Church of Ethiopia',
   keywords: [
     'Emmanuel Baptist Church of Ethiopia',
+    'Ethiopian Emmanuel Baptist',
     'EBCE',
     'Ethiopia',
     'Baptist church Ethiopia',
