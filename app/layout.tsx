@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Emmanuel Baptist Church of Ethiopia',
-    description: 'Serving Ethiopia since 1960 through Gospel proclamation, discipleship, and healthy church planting.',
+    description: 'Serving Ethiopia since 1960 G.C through Gospel proclamation, discipleship, and healthy church planting.',
     url: siteUrl,
     siteName: 'Emmanuel Baptist Church of Ethiopia',
     type: 'website',
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Emmanuel Baptist Church of Ethiopia',
-    description: 'Serving Ethiopia since 1960 through Gospel proclamation, discipleship, and healthy church planting.',
+    description: 'Serving Ethiopia since 1960 G.C through Gospel proclamation, discipleship, and healthy church planting.',
     images: ['/ourchurch1.jpg'],
   },
   icons: {

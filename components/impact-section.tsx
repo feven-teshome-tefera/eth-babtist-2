@@ -76,7 +76,7 @@ export function ImpactSection({ siteContent }: { siteContent: SiteContent }) {
       value: siteContent.yearsOfMinistry,
       suffix: siteContent.yearsOfMinistrySuffix,
       label: 'Years of Ministry',
-      description: 'Faithful service since 1960',
+      description: 'Faithful service since 1960 G.C',
     },
   ]
 

@@ -163,6 +163,43 @@ export function getLocalizedBoardChairMessage(content: SiteContent, language: La
   return preferredMessage.trim() || fallbackMessage.trim()
 }
 
+export function getLocalizedServingSince(servingSince: string, language: Language) {
+  const trimmedValue = servingSince.trim()
+
+  if (!trimmedValue) {
+    return trimmedValue
+  }
+
+  if (/(G\.C|E\.C|GC|EC)\b/.test(trimmedValue)) {
+    return trimmedValue
+  }
+
+  const rangeMatch = trimmedValue.match(/^(\d{4})\s*-\s*(\d{4})$/)
+  if (rangeMatch) {
+    const start = Number(rangeMatch[1])
+    const end = Number(rangeMatch[2])
+
+    if (language === 'am') {
+      return `${start - 8}-${end - 8} E.C`
+    }
+
+    return `${start}-${end} G.C`
+  }
+
+  const singleYearMatch = trimmedValue.match(/^(\d{4})$/)
+  if (singleYearMatch) {
+    const year = Number(singleYearMatch[1])
+
+    if (language === 'am') {
+      return `${year - 8} E.C`
+    }
+
+    return `${year} G.C`
+  }
+
+  return trimmedValue
+}
+
 export function normalizeSiteContent(record?: Record<string, unknown> | null): SiteContent {
   if (!record) {
     return defaultSiteContent

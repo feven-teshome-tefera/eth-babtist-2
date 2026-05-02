@@ -8,6 +8,7 @@ import { useLanguage, useSiteCopy } from '@/components/language-provider'
 import {
   getLocalizedBoardChairMessage,
   getLocalizedMessage,
+  getLocalizedServingSince,
   getMessageParagraphs,
   type SiteContent,
 } from '@/lib/site-content'
@@ -136,7 +137,9 @@ export function LeadershipSection({ siteContent }: { siteContent: SiteContent })
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">{copy.leadership.servingSince}</p>
-                      <p className="font-medium text-navy">{siteContent.servingSince}</p>
+                      <p className="font-medium text-navy">
+                        {getLocalizedServingSince(siteContent.servingSince, language)}
+                      </p>
                     </div>
                   </div>
 
