@@ -4,12 +4,13 @@ import { useEffect, useRef } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Church, Cross, Book, Users, Globe } from 'lucide-react'
 import Image from 'next/image'
-import { useSiteCopy } from '@/components/language-provider'
+import { useLanguage, useSiteCopy } from '@/components/language-provider'
 
 const timelineIcons = [Church, Church, Church, Book, Cross, Users, Globe, Church]
 
 export function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null)
+  const { language } = useLanguage()
   const copy = useSiteCopy()
 
   useEffect(() => {
@@ -28,7 +29,7 @@ export function AboutSection() {
     elements?.forEach((el) => observer.observe(el))
 
     return () => observer.disconnect()
-  }, [])
+  }, [language])
 
   return (
     <section id="about" ref={sectionRef} className="bg-white py-24">
@@ -81,7 +82,7 @@ export function AboutSection() {
 
               return (
                 <div
-                  key={`${event.year}-${index}`}
+                  key={`timeline-${index}`}
                   className={`relative flex items-start gap-4 animate-on-scroll ${
                     isLeft ? 'lg:flex-row' : 'lg:flex-row-reverse'
                   }`}

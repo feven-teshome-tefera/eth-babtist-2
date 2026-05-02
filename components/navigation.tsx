@@ -8,6 +8,7 @@ import { Menu } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
@@ -53,6 +54,7 @@ export function Navigation() {
   }
 
   const handleLanguageChange = (nextLanguage: (typeof languageOptions)[number]['value']) => {
+    setIsOpen(false)
     window.localStorage.setItem(SITE_LANGUAGE_COOKIE, nextLanguage)
     document.cookie = `${SITE_LANGUAGE_COOKIE}=${nextLanguage}; path=/; max-age=31536000; samesite=lax`
     document.documentElement.lang = nextLanguage
@@ -71,7 +73,7 @@ export function Navigation() {
     >
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between lg:h-20">
-          <Link href="#home" className="flex items-center gap-3">
+          <Link href="#home" onClick={handleLinkClick} className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-navy text-lg font-bold text-white">
               <Image
                 src="/cropped_circle_image.png"
@@ -196,45 +198,49 @@ export function Navigation() {
                   </p>
                   <div className="grid grid-cols-2 gap-2">
                     {languageOptions.map((option) => (
-                      <Button
-                        key={option.value}
-                        type="button"
-                        variant={language === option.value ? 'default' : 'outline'}
-                        className={cn(
-                          language === option.value && 'bg-navy text-white hover:bg-navy/90'
-                        )}
-                        onClick={() => handleLanguageChange(option.value)}
-                      >
-                        {option.label}
-                      </Button>
+                      <SheetClose asChild key={option.value}>
+                        <Button
+                          type="button"
+                          variant={language === option.value ? 'default' : 'outline'}
+                          className={cn(
+                            language === option.value && 'bg-navy text-white hover:bg-navy/90'
+                          )}
+                          onClick={() => handleLanguageChange(option.value)}
+                        >
+                          {option.label}
+                        </Button>
+                      </SheetClose>
                     ))}
                   </div>
                 </div>
                 {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={handleLinkClick}
-                    className={cn(
-                      'rounded-md px-4 py-3 text-base font-medium transition-colors',
-                      activeSection === link.href.replace('#', '')
-                        ? 'bg-navy/5 text-navy'
-                        : 'text-foreground/70 hover:bg-navy/5 hover:text-navy'
-                    )}
-                  >
-                    {link.label}
-                  </Link>
+                  <SheetClose asChild key={link.href}>
+                    <Link
+                      href={link.href}
+                      onClick={handleLinkClick}
+                      className={cn(
+                        'rounded-md px-4 py-3 text-base font-medium transition-colors',
+                        activeSection === link.href.replace('#', '')
+                          ? 'bg-navy/5 text-navy'
+                          : 'text-foreground/70 hover:bg-navy/5 hover:text-navy'
+                      )}
+                    >
+                      {link.label}
+                    </Link>
+                  </SheetClose>
                 ))}
                 <div className="mt-6 flex flex-col gap-3 px-4">
-                  <Button asChild variant="outline" className="w-full">
-                    <Link
-                      href="https://t.me/+UItuI-4qYUBmYzNk"
-                      target="_blank"
-                      onClick={handleLinkClick}
-                    >
-                      {copy.nav.joinTelegram}
-                    </Link>
-                  </Button>
+                  <SheetClose asChild>
+                    <Button asChild variant="outline" className="w-full">
+                      <Link
+                        href="https://t.me/+UItuI-4qYUBmYzNk"
+                        target="_blank"
+                        onClick={handleLinkClick}
+                      >
+                        {copy.nav.joinTelegram}
+                      </Link>
+                    </Button>
+                  </SheetClose>
                   {/* <Button asChild className="w-full bg-gold text-navy hover:bg-gold/90">
                     <Link href="#contact" onClick={handleLinkClick}>
                       {copy.nav.contactUs}
