@@ -5,15 +5,19 @@ import { Toaster } from '@/components/ui/sonner'
 import { getServerLanguage } from '@/lib/site-language'
 import './globals.css'
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
-
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  'https://www.ethiopianemmanuelbaptistchurch.com'
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Emmanuel Baptist Church of Ethiopia | Gospel, Discipleship, and Church Planting',
-    template: '%s | Emmanuel Baptist Church of Ethiopia',
+    default: 'Ethiopian Emmanuel Baptist Church',
+    template: '%s | Ethiopian Emmanuel Baptist Church',
   },
-  description: 'Emmanuel Baptist Church of Ethiopia is a legally registered Baptist denomination serving Ethiopia through Gospel proclamation, discipleship, leadership development, and healthy church multiplication.',
+
+  description:
+    'Ethiopian Emmanuel Baptist Church shares worship services, ministries, events, and church updates for the Ethiopian community.',
+
   applicationName: 'Emmanuel Baptist Church of Ethiopia',
   keywords: [
     'Emmanuel Baptist Church of Ethiopia',
