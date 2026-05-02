@@ -403,7 +403,7 @@ export const siteCopy = {
       historySubtitle: 'በኢቢሲኢ ሕይወት ውስጥ ዋና ክስተቶች',
       timeline: [
         {
-          year: '1960',
+          year: '1952',
           title: 'ቤተ ክርስቲያን ተከለች',
           description: 'አማኑኤል ባፕቲስት ቤተ ክርስቲያን በአዲስ አበባ ከአሜሪካ የመጡ ሚስዮናውያን ተከለች።',
         },
