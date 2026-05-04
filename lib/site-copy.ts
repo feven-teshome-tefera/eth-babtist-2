@@ -28,12 +28,12 @@ export const siteCopy = {
       language: 'Language',
     },
     hero: {
-      badge: 'Serving Ethiopia since 1960 G.C',
+      badge: 'Serving Ethiopia since 1960',
       titleStart: 'Proclaiming the Gospel.',
       titleHighlight: 'Making Disciples.',
       titleEnd: 'Planting Healthy Churches.',
       description:
-        'Emmanuel Baptist Church of Ethiopia is a gospel-centered Baptist denomination serving Ethiopia since 1960 G.C, committed to proclaiming Christ, making true disciples, and strengthening and planting biblical local churches.',
+        'Emmanuel Baptist Church of Ethiopia is a gospel-centered Baptist denomination serving Ethiopia since 1960, committed to proclaiming Christ, making true disciples, and strengthening and planting biblical local churches.',
       stats: [
         { value: '143', label: 'Local Churches' },
         { value: '132,456', label: 'Believers Nationwide' },
@@ -48,51 +48,51 @@ export const siteCopy = {
         'The history of Emmanuel Baptist Church of Ethiopia is marked by gospel witness, doctrinal conviction, persecution, perseverance, and ongoing church multiplication across the country.',
       legacyTitle: 'A Legacy of Faithfulness',
       paragraph1:
-        'Emmanuel Baptist Church was planted in 1960 G.C in Addis Ababa by missionaries of the Baptist Bible Fellowship from the United States. In 1962 G.C, a four-story church building was erected at Arat Kilo on land granted by Emperor Haile Selassie I, and the congregation moved there in 1963 G.C.',
+        'Emmanuel Baptist Church was planted in 1960 in Addis Ababa by missionaries of the Baptist Bible Fellowship from the United States. In 1962, a four-story church building was erected at Arat Kilo on land granted by Emperor Haile Selassie I, and the congregation moved there in 1963.',
       paragraph2:
-        'The ministry later included the Baptist Bible Institute, where many Ethiopian ministers were trained. Even after the building was confiscated in 1981 G.C and the church was forced into scattered underground gatherings, the work continued. Today EBCE serves through 143 local churches and continues to preach the Gospel, disciple believers, and strengthen churches.',
+        'The ministry later included the Baptist Bible Institute, where many Ethiopian ministers were trained. Even after the building was confiscated in 1981 and the church was forced into scattered underground gatherings, the work continued. Today EBCE serves through 143 local churches and continues to preach the Gospel, disciple believers, and strengthen churches.',
       imageAlt: 'Historical ministry photo',
       historyTitle: 'Our History',
       historySubtitle: 'Key moments in the life of EBCE',
       timeline: [
         {
-          year: '1960 G.C',
+          year: '1960',
           title: 'Church Planted',
           description:
             'Emmanuel Baptist Church was planted in Addis Ababa by missionaries of the Baptist Bible Fellowship from the United States.',
         },
         {
-          year: '1962 G.C',
+          year: '1962',
           title: 'Building Erected',
           description:
             'A four-story building was erected on land in Arat Kilo, establishing a permanent home for the church.',
         },
         {
-          year: '1963 G.C',
+          year: '1963',
           title: 'New Home',
           description:
             'The church moved into the new building, marking a significant milestone in its growth.',
         },
         {
-          year: '1963 G.C',
+          year: '1963',
           title: 'Bible School Founded',
           description:
             'A Bible school called Baptist Bible Institute was established to train ministers and church leaders.',
         },
         {
-          year: '1981 G.C',
+          year: '1981',
           title: 'Period of Trial',
           description:
             'The church building was confiscated without compensation during a time of political upheaval.',
         },
         {
-          year: '1981-1991 G.C',
+          year: '1981-1991',
           title: 'Underground Faith',
           description:
             'The church continued faithfully through scattered underground meetings, demonstrating remarkable perseverance.',
         },
         {
-          year: '1991 G.C',
+          year: '1991',
           title: 'Freedom Restored',
           description:
             'Religious freedom returned to Ethiopia, though the original church buildings were not returned.',
@@ -375,12 +375,12 @@ export const siteCopy = {
       language: 'ቋንቋ',
     },
     hero: {
-      badge: 'ከ1952 E.C ጀምሮ በኢትዮጵያ እያገለገልን',
+      badge: 'ከ1952 ጀምሮ በኢትዮጵያ እያገለገልን',
       titleStart: 'ወንጌልን እናበስራለን።',
       titleHighlight: 'ደቀ መዛሙርትን እናፈራለን።',
       titleEnd: 'ጤናማ አብያተ ክርስቲያናትን እንተክላለን።',
       description:
-        'አማኑኤል ባፕቲስት ቤተ ክርስቲያን በኢትዮጵያ ከ1952 E.C ጀምሮ የሚያገለግል በወንጌል የተመሰረተ ባፕቲስት ማህበር ሲሆን ክርስቶስን ለማወጅ፣ እውነተኛ ደቀ መዛሙርትን ለማፍራት እና መጽሐፍ ቅዱሳዊ የአካባቢ አብያተ ክርስቲያናትን ለማጠናከርና ለመትከል የተሰጠ ነው።',
+        'አማኑኤል ባፕቲስት ቤተ ክርስቲያን በኢትዮጵያ ከ1952 ጀምሮ የሚያገለግል በወንጌል የተመሰረተ ባፕቲስት ማህበር ሲሆን ክርስቶስን ለማወጅ፣ እውነተኛ ደቀ መዛሙርትን ለማፍራት እና መጽሐፍ ቅዱሳዊ የአካባቢ አብያተ ክርስቲያናትን ለማጠናከርና ለመትከል የተሰጠ ነው።',
       stats: [
         { value: '143', label: 'የአካባቢ አብያተ ክርስቲያናት' },
         { value: '132,456', label: 'አማኞች በአገር አቀፍ' },
@@ -395,45 +395,45 @@ export const siteCopy = {
         'የአማኑኤል ባፕቲስት ቤተ ክርስቲያን ታሪክ በወንጌል ምስክርነት፣ በመጽሐፍ ቅዱሳዊ እምነት፣ በመከራ መቋቋም እና በሀገር አቀፍ የቤተ ክርስቲያን መባዛት ታውቋል።',
       legacyTitle: 'የታማኝነት ቅርስ',
       paragraph1:
-        'አማኑኤል ባፕቲስት ቤተ ክርስቲያን በ1952 E.C በአዲስ አበባ ከአሜሪካ የመጡ የBaptist Bible Fellowship ሚስዮናውያን ተተክላ ተጀመረች። በ1954 E.C በአራት ኪሎ በንጉሠ ነገሥት ኃይለ ሥላሴ በተሰጠ መሬት ላይ አራት ፎቅ ሕንፃ ተሠርቶ ጉባኤው በ1955 E.C ወደዚያ ተዘዋወረ።',
+        'አማኑኤል ባፕቲስት ቤተ ክርስቲያን በ1960 በአዲስ አበባ ከአሜሪካ የመጡ የBaptist Bible Fellowship ሚስዮናውያን ተተክላ ተጀመረች። በ1962 በአራት ኪሎ በንጉሠ ነገሥት ኃይለ ሥላሴ በተሰጠ መሬት ላይ አራት ፎቅ ሕንፃ ተሠርቶ ጉባኤው በ1963 ወደዚያ ተዘዋወረ።',
       paragraph2:
-        'ከዚያ በኋላ አገልግሎቱ ብዙ የኢትዮጵያ አገልጋዮችን ያሰለጠነውን የBaptist Bible Institute አካቶ ቀጠለ። ሕንፃው በ1973 E.C ቢወሰድም ቤተ ክርስቲያኒቱ በተበተኑ ምስጢራዊ ስብሰባዎች ብትቀጥልም ሥራው አልቆምም። ዛሬ በ143 የአካባቢ አብያተ ክርስቲያናት ያገለግላል፣ ወንጌልን ይሰብካል፣ አማኞችን ያስተምራል እና አብያተ ክርስቲያናትን ያጠናክራል።',
+        'ከዚያ በኋላ አገልግሎቱ ብዙ የኢትዮጵያ አገልጋዮችን ያሰለጠነውን የBaptist Bible Institute አካቶ ቀጠለ። ሕንፃው በ1981 ቢወሰድም ቤተ ክርስቲያኒቱ በተበተኑ ምስጢራዊ ስብሰባዎች ብትቀጥልም ሥራው አልቆምም። ዛሬ በ143 የአካባቢ አብያተ ክርስቲያናት ያገለግላል፣ ወንጌልን ይሰብካል፣ አማኞችን ያስተምራል እና አብያተ ክርስቲያናትን ያጠናክራል።',
       imageAlt: 'የታሪካዊ አገልግሎት ፎቶ',
       historyTitle: 'ታሪካችን',
       historySubtitle: 'በኢቢሲኢ ሕይወት ውስጥ ዋና ክስተቶች',
       timeline: [
         {
-          year: '1952 E.C',
+          year: '1952',
           title: 'ቤተ ክርስቲያን ተከለች',
           description: 'አማኑኤል ባፕቲስት ቤተ ክርስቲያን በአዲስ አበባ ከአሜሪካ የመጡ ሚስዮናውያን ተከለች።',
         },
         {
-          year: '1954 E.C',
+          year: '1962',
           title: 'ሕንፃው ተሠራ',
           description: 'በአራት ኪሎ ላይ አራት ፎቅ ሕንፃ ተሠርቶ ለቤተ ክርስቲያን ቋሚ ማዕከል ሆነ።',
         },
         {
-          year: '1955 E.C',
+          year: '1963',
           title: 'ወደ አዲስ ቤት መግባት',
           description: 'ጉባኤው ወደ አዲሱ ሕንፃ ተዛወረ እና እድገቱ አዲስ ደረጃ ላይ ደረሰ።',
         },
         {
-          year: '1955 E.C',
+          year: '1963',
           title: 'የመጽሐፍ ቅዱስ ትምህርት ቤት ተመሠረተ',
           description: 'አገልጋዮችን እና መሪዎችን ለማሰልጠን Baptist Bible Institute ተቋቋመ።',
         },
         {
-          year: '1973 E.C',
+          year: '1981',
           title: 'የፈተና ዘመን',
           description: 'በፖለቲካዊ ለውጥ ዘመን የቤተ ክርስቲያኑ ሕንፃ ያለ ካሳ ተወሰደ።',
         },
         {
-          year: '1973-1983 E.C',
+          year: '1981-1991',
           title: 'በምስጢር ታማኝነት',
           description: 'ቤተ ክርስቲያኒቱ በተበተኑ ስብሰባዎች ውስጥ በታማኝነት ቀጠለች።',
         },
         {
-          year: '1983 E.C',
+          year: '1991',
           title: 'ነፃነት ተመለሰ',
           description: 'በኢትዮጵያ የሃይማኖት ነፃነት ተመለሰ፣ ግን የመጀመሪያዎቹ ሕንፃዎች አልተመለሱም።',
         },
