@@ -1,7 +1,7 @@
  'use client'
 
 import { useRef } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { siteCopy, type Language } from '@/lib/site-copy'
 import { type SiteAnnouncement, type SiteContent } from '@/lib/site-content'
@@ -122,10 +122,18 @@ export function AnnouncementSection({
                           ) : null}
                         </div>
                         {body ? (
-                          <div className="mt-3 min-h-0 flex-1 overflow-y-auto pr-2">
+                          <div className="relative mt-3 min-h-0 flex-1">
+                            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex justify-center bg-gradient-to-t from-white via-white/95 to-transparent pb-1 pt-8">
+                              <span className="inline-flex items-center gap-1 rounded-full border border-gold/20 bg-white/90 px-2.5 py-1 text-[11px] font-medium text-navy/65 shadow-sm">
+                                <ChevronDown className="h-3 w-3" />
+                                Scroll down
+                              </span>
+                            </div>
+                            <div className="h-full overflow-y-auto pr-2 pb-10">
                             <p className="whitespace-pre-line text-sm leading-relaxed text-muted-foreground sm:text-base">
                               {body}
                             </p>
+                            </div>
                           </div>
                         ) : null}
                       </div>
