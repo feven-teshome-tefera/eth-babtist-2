@@ -27,6 +27,7 @@ export function AnnouncementSection({
     return Boolean(title || body || imageUrl)
   })
   const shouldCenterGroup = announcements.length <= 2
+  const showMobileScrollHint = announcements.length > 1
 
   if (announcements.length === 0) {
     return null
@@ -59,6 +60,13 @@ export function AnnouncementSection({
         </div>
 
         <div className="relative">
+          {showMobileScrollHint ? (
+            <div className="mb-3 flex items-center justify-end gap-2 px-1 text-xs font-medium text-navy/65 lg:hidden">
+              <span>Swipe for more</span>
+              <ChevronRight className="h-3.5 w-3.5" />
+            </div>
+          ) : null}
+
           <button
             type="button"
             aria-label="Scroll announcements left"
@@ -89,7 +97,7 @@ export function AnnouncementSection({
                 return (
                   <Card
                     key={item.id}
-                    className={`w-[85vw] min-w-[85vw] border-0 bg-white shadow-lg sm:w-[28rem] sm:min-w-[28rem] ${shouldCenterGroup ? 'snap-start' : 'snap-center'}`}
+                    className={`h-[32rem] w-[82vw] min-w-[82vw] border-0 bg-white shadow-lg sm:h-[34rem] sm:w-[28rem] sm:min-w-[28rem] ${shouldCenterGroup ? 'snap-start' : 'snap-center'}`}
                   >
                     <CardContent className="flex h-full flex-col p-0">
                       {imageUrl ? (
@@ -102,19 +110,23 @@ export function AnnouncementSection({
                         </div>
                       ) : null}
 
-                      <div className="flex flex-1 flex-col p-6 sm:p-7">
+                      <div className="flex min-h-0 flex-1 flex-col p-6 sm:p-7">
                         <span className="inline-block w-fit rounded-full bg-gold/15 px-3 py-1 text-xs font-medium text-navy">
                           {label}
                         </span>
-                        {title ? (
-                          <h3 className="mt-4 text-xl font-bold text-navy text-balance">
-                            {title}
-                          </h3>
-                        ) : null}
+                        <div className="mt-4 min-h-[5.5rem] sm:min-h-[6rem]">
+                          {title ? (
+                            <h3 className="text-xl font-bold text-navy text-balance">
+                              {title}
+                            </h3>
+                          ) : null}
+                        </div>
                         {body ? (
-                          <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-muted-foreground sm:text-base">
-                            {body}
-                          </p>
+                          <div className="mt-3 min-h-0 flex-1 overflow-y-auto pr-2">
+                            <p className="whitespace-pre-line text-sm leading-relaxed text-muted-foreground sm:text-base">
+                              {body}
+                            </p>
+                          </div>
                         ) : null}
                       </div>
                     </CardContent>
