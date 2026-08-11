@@ -37,6 +37,9 @@ export const metadata: Metadata = {
   category: 'religion',
   creator: 'Emmanuel Baptist Church of Ethiopia',
   publisher: 'Emmanuel Baptist Church of Ethiopia',
+  verification: {
+    google: 'e_HvLIliHgAjSPkZSgY-WAAPwbb43IO2FM82ttkIvvM',
+  },
   robots: {
     index: true,
     follow: true,
