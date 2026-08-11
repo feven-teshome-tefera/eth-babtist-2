@@ -71,11 +71,8 @@ export const metadata: Metadata = {
     images: ['/ourchurch1.jpg'],
   },
   icons: {
-    icon: [
-      { url: '/icon-light-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/icon-dark-32x32.png', sizes: '32x32', type: 'image/png' },
-    ],
-    apple: '/apple-icon.png',
+    icon: [{ url: '/cropped_circle_image.png', type: 'image/png' }],
+    apple: '/cropped_circle_image.png',
   },
   manifest: '/manifest.webmanifest',
 }

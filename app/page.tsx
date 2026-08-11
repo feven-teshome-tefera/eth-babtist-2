@@ -21,7 +21,7 @@ const organizationSchema = {
   name: 'Emmanuel Baptist Church of Ethiopia',
   alternateName: 'EBCE',
   url: siteUrl,
-  logo: `${siteUrl}/apple-icon.png`,
+  logo: `${siteUrl}/cropped_circle_image.png`,
   image: `${siteUrl}/ourchurch1.jpg`,
   description:
     'Emmanuel Baptist Church of Ethiopia is a legally registered Baptist denomination serving Ethiopia through Gospel proclamation, discipleship, leadership development, and healthy church multiplication.',
